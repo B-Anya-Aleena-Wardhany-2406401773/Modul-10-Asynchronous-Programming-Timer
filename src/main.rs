@@ -116,8 +116,16 @@ fn main() {
         TimerFuture::new(Duration::new(2, 0)).await;
         println!("Anya's Komputer: done!");
     });
-
-    println!("Anya's Komputer: hey hey!"); 
+    spawner.spawn(async {
+        println!("Anya's Komputer: howdy2!");
+        TimerFuture::new(Duration::new(2, 0)).await;
+        println!("Anya's Komputer: done2!");
+    });
+    spawner.spawn(async {
+        println!("Anya's Komputer: howdy3!");
+        TimerFuture::new(Duration::new(2, 0)).await;
+        println!("Anya's Komputer: done3!");
+    });
 
     drop(spawner);
     executor.run();
